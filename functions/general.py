@@ -10,8 +10,9 @@ def save_medication(user_id, person, medication, timestamp):
     try:
         table.put_item(
             Item={
-                "UserId": user_id,
-                "PersonMedication": f"{person}#{medication}",
+                "UserID": user_id,
+                "MedicationName": medication,
+                "Person": person,
                 "LastTakenAt": timestamp
             }
         )
@@ -22,8 +23,8 @@ def load_last_taken(user_id, person, medication):
     try:
         response = table.get_item(
             Key={
-                "UserId": user_id,
-                "PersonMedication": f"{person}#{medication}"
+                "UserID": user_id,
+                "MedicationName": medication
             }
         )
     except ClientError as e:

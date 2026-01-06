@@ -1,13 +1,17 @@
-from functions.handlers import (
-    handle_log_medication,
-    handle_get_medication
-)
+def lambda_handler(event, context):
+    intent = event['request']['intent']['name']
+    slots = {k: v.get('value') for k, v in event['request']['intent']['slots'].items()}
+    user_id = event['session']['user']['userId']
 
-def run_intent(intent, slots):
-    if intent == "LogMedicationIntent":
-        return handle_log_medication(slots)
-
-    if intent == "GetLastTaken":
-        return handle_get_medication(slots)
-
-    raise ValueError(f"Unknown intent: {intent}")
+    from functions.handlers import run_intent
+    result = run_intent(intent, slots, user_id)
+    return {
+        "version": "1.0",
+        "response": {
+            "outputSpeech": {
+                "type": "PlainText",
+                "text": f"{result}"
+            },
+            "shouldEndSession": True
+        }
+    }
