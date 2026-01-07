@@ -17,7 +17,6 @@ Output::
                         "UserName": "testuser",
                         "UserType": "IAMUser",
                         "PrincipalId": "AIDACKCEVSQ6C2EXAMPLE",
-                        "AccessKeyId": "ASIASZ4SI7REEEXAMPLE"
                     }
                 },
                 "Description": "APIs commonly used to discover the users, groups, policies and permissions in an account, was invoked by IAM principal testuser under unusual circumstances. Such activity is not typically seen from this principal.",
@@ -71,5 +70,6 @@ Output::
             }
         ]
     }
+
 
 For more information, see `Findings <https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html>`__ in the GuardDuty User Guide.
